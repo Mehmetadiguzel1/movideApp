@@ -12,7 +12,9 @@ const Tab = createBottomTabNavigator();
 class MainRoot extends Component {
   render() {
     return (
-        <Tab.Navigator initialRouteName='Home' screenOptions={{headerShown: false, tabBarActiveTintColor: '#e91e63'}}>
+        <Tab.Navigator initialRouteName='Home' screenOptions={{
+            headerShown: false, tabBarActiveTintColor: '#FE9901', tabBarInactiveTintColor: '#484747',  
+            }}>
             <Tab.Screen options={{
                 tabBarLabel: 'Home',
                 tabBarIcon: ({ color, size }) => (
