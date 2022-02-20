@@ -1,12 +1,17 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableNativeFeedback } from 'react-native'
 import React from 'react'
-
+import { useNavigation } from '@react-navigation/native'
+import MovieDetail from '../pages/MovieDetail'
 function MovieItem(props) {
+
+    const navigation = useNavigation();
     return (
-        <View style={styles.item} >
-            <Image style={styles.poster} source={{uri:"https://image.tmdb.org/t/p/original/" + props.item.poster_path}}/>
-            <Text style={{width: 180}} >{props.item.title}</Text>
-        </View>
+        <TouchableNativeFeedback onPress={() => navigation.navigate("MovieDetail", { item: props.item})}>
+            <View style={styles.item} >
+                <Image style={styles.poster} source={{uri:"https://image.tmdb.org/t/p/original/" + props.item.poster_path}}/>
+                <Text style={{width: 180}} >{props.item.title}</Text>
+            </View>
+        </TouchableNativeFeedback>
     );
 }
 

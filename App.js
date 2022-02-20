@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainRoot from './app/pages/MainRoot';
+import MovieDetail from './app/pages/MovieDetail';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -18,6 +19,11 @@ export default function App() {
           name="Home"
           component={MainRoot}
           options={{ title: 'MainRoot' }}
+        />
+        <Stack.Screen
+          name="MovieDetail"
+          component={MovieDetail}
+          options={{ title: 'MovieDetail' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

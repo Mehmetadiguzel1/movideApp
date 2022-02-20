@@ -17,6 +17,7 @@ class MainRoot extends Component {
         genres:[]
     }
 
+
     componentDidMount () {
         return fetch("https://api.themoviedb.org/3/genre/movie/list?api_key=def30dcb6753a6abdcf8682057b1ed85")
         .then(response => response.json())
@@ -24,7 +25,7 @@ class MainRoot extends Component {
 
             this.setState({
                 isLoading: false,
-                genres: responseJson.genres
+                genres: responseJson.genres,
             })
 
         })
@@ -32,6 +33,8 @@ class MainRoot extends Component {
     }
 
   render() {
+
+    const HomeComponent = (props) => <Home genres={this.state.genres} />;
     if (this.state.isLoading){
         <SafeAreaView style={{flex:1, justifyContent:"center", alignItems:"center"}}>
             <ActivityIndicator />
@@ -46,7 +49,7 @@ class MainRoot extends Component {
                 tabBarIcon: ({ color, size }) => (
                     <MaterialCommunityIcons name="home" color={color} size={20} />
                 ),
-            }} name="Home" component={Home} />
+            }} name="Home" component={HomeComponent} />
             <Tab.Screen options={{
                 tabBarLabel: 'Favorite',
                 tabBarIcon: ({ color, size }) => (
