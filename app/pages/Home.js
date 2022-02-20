@@ -64,9 +64,10 @@ export default class Home extends Component {
                     <View style={{ flexDirection: "row", flex: 1, paddingLeft: 20}}>
                         {
                             this.state.popularMovies.map((item, index) =>{
-                                return( index < 4 ? <MovieItem key={item.title}  item={item} /> : <View />
+                                return( index < 4 ? (<MovieItem key={item.id}  item={item} /> 
+                                    ) : <View key={item.id} />
                                     
-                                )
+                                );
                             })
                         }
                     </View>
