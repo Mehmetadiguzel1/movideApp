@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, SafeAreaView, StyleSheet } from "react-native";
+import { View, Text, SafeAreaView, StyleSheet, ScrollView } from "react-native";
+import Constants from 'expo-constants';
 import Movie from '../models/Movie';
+import MovieItem from '../components/MovieItem'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 export default class Home extends Component {
     _isMount = false;
 
@@ -51,13 +54,23 @@ export default class Home extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                {
-                    this.state.popularMovies.map((item) =>{
-                        return(
-                            <Text key={item.id}>{item.title}</Text>
-                        )
-                    })
-                }
+                <View style={styles.header}>
+                    <Text style={styles.title}>Movie Catch</Text>
+                    <MaterialCommunityIcons name="magnify" size={26} />
+                </View>
+                <ScrollView horizontal={true} 
+                showsHorizontalScrollIndicator = {false}
+                >
+                    <View style={{ flexDirection: "row", flex: 1, paddingLeft: 20}}>
+                        {
+                            this.state.popularMovies.map((item, index) =>{
+                                return( index < 4 ? <MovieItem key={item.title}  item={item} /> : <View />
+                                    
+                                )
+                            })
+                        }
+                    </View>
+                </ScrollView>
             </SafeAreaView>
         );
     }
@@ -66,7 +79,18 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
+        marginTop: Constants.statusBarHeight,
+        paddingVertical: 20,
+    },
+    header:{
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingHorizontal: 20,
+        marginBottom: 10,
+    },
+    title:{
+        fontSize: 24,
+        fontWeight:"bold",
     }
 });
