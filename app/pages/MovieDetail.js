@@ -18,6 +18,7 @@ export default class MovieDetail extends React.Component {
 
   state = {
     teeserTrailers: [],
+    activeMovieTrailerKey: '',
     modalVisible: false,
 
   };
@@ -69,7 +70,7 @@ export default class MovieDetail extends React.Component {
               <YoutubePlayer
                 height={300}
                 play={true}
-                videoId={"JfVOs4VSpmA"}
+                videoId={this.state.activeMovieTrailerKey}
               />
             </View>
 
@@ -131,7 +132,7 @@ export default class MovieDetail extends React.Component {
                 this.state.teeserTrailers.map((item, index) => {
                   return (
                     
-                      <TrailerItem key={item.key} onPressFunction={() => this.setState({ modalVisible: true}) } poster={this.movieItem.backdrop_path} data = {item} modalVisible={this.state.modalVisible} itemIndex={index} />
+                      <TrailerItem key={item.key} onPressFunction={() => this.setState({ modalVisible: true, activeMovieTrailerKey: item.key,}) } poster={this.movieItem.backdrop_path} data = {item} modalVisible={this.state.modalVisible} itemIndex={index} />
                   );
                 })}
             </View>
