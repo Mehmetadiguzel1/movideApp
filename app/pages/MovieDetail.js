@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, TouchableWitho
 import React from 'react'
 import Constants from 'expo-constants';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import ChipGroup from '../components/ChipGroup';
 
 
 export default function MovieDetail({ navigation, route }) {
@@ -37,7 +37,7 @@ export default function MovieDetail({ navigation, route }) {
 
             <View style={{ flexWrap: "wrap", flexDirection: "column"}}>
               <Text>{movieItem.title}</Text>
-              <Text>{genres}</Text>
+              <Text>{movieItem.release_date}</Text>
             </View>
             <View style={{ 
               width:48, 
@@ -51,6 +51,10 @@ export default function MovieDetail({ navigation, route }) {
                 <Text>{movieItem.vote_average}</Text>
             </View>
           </View>
+
+              <ChipGroup datas={movieItem.genres} />
+
+
           <Text style={styles.header}>Overview</Text>
           <Text>{movieItem.overview}</Text>
           <Text style={styles.header}>Teaser & Trailers</Text>
