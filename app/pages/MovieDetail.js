@@ -25,7 +25,7 @@ export default function MovieDetail({ navigation, route }) {
 
         <View style={{ 
           flex: 1, 
-          backgroundColor:"#B0B0B0",
+          
           padding: 20,
           }}>
           <View style={{ 
@@ -33,10 +33,12 @@ export default function MovieDetail({ navigation, route }) {
             flexDirection: "row", 
             justifyContent: "space-between",
             alignItems: "center",
+            marginBottom: 10,
+
             }}>
 
             <View style={{ flexWrap: "wrap", flexDirection: "column"}}>
-              <Text>{movieItem.title}</Text>
+              <Text style={styles.title}>{movieItem.title}</Text>
               <Text>{movieItem.release_date}</Text>
             </View>
             <View style={{ 
@@ -52,7 +54,9 @@ export default function MovieDetail({ navigation, route }) {
             </View>
           </View>
 
-              <ChipGroup datas={movieItem.genres} />
+              <View style={{width: "100%"}}>
+                <ChipGroup datas={movieItem.genres} />
+              </View>
 
 
           <Text style={styles.header}>Overview</Text>
@@ -75,6 +79,10 @@ const styles = StyleSheet.create({
     poster:{
       height: 230,
     },
+    title:{
+      fontSize: 20,
+      fontWeight: "700",
+      },
     header:{
       fontSize: 26,
       fontWeight:"bold",

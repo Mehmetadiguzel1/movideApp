@@ -7,7 +7,7 @@ export default function ChipGroup(props) {
             {
                 props.datas.map((item, index) => {
                     return(<View style={styles.chipItem} key={index}>
-                        <Text style={{color: "#FE9901"}}>{item}</Text>
+                        <Text style={{color: "#FE9901", fontSize: 14}}>{item}</Text>
                     </View>)
                 })
             }
@@ -19,6 +19,7 @@ export default function ChipGroup(props) {
 const styles = StyleSheet.create({
     itemGroup:{
         flexDirection:"row",
+        flexWrap: "wrap",
 
     },
     chipItem:{
@@ -27,7 +28,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingHorizontal: 10,
         paddingVertical: 5,
-        marginRight: 10,
+        marginRight: 5,
+        marginTop: 5,
         borderRadius: 16,
     }
 })
