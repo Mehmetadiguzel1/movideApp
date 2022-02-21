@@ -1,11 +1,26 @@
-import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 import Constants from 'expo-constants';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
+
 export default function MovieDetail({ navigation, route }) {
   const movieItem = route.params.item;
+  var genres = "";
+  movieItem.genres.map((genre, index ) => {
+    genres += genre + (index < movieItem.genres.length -1 ? ", " : "");
+  });
   return (
     <View style={styles.container}>
       <ScrollView>
+        
+        <TouchableWithoutFeedback onPress={() => navigation.pop()} >
+          
+          <MaterialCommunityIcons 
+        style={{ position: "absolute", top: Constants.statusBarHeight +10, left: 20, zIndex:1, paddingRight: 20, paddingBottom:20}} name="chevron-left" size={24} color={"#fff"} />
+        </TouchableWithoutFeedback>
+
         <Image style={styles.poster} resizeMode={"cover"} source={{uri: "https://image.tmdb.org/t/p/original/" + movieItem.backdrop_path}} />
 
         <View style={{ 
@@ -22,7 +37,7 @@ export default function MovieDetail({ navigation, route }) {
 
             <View style={{ flexWrap: "wrap", flexDirection: "column"}}>
               <Text>{movieItem.title}</Text>
-              <Text>{movieItem.title}</Text>
+              <Text>{genres}</Text>
             </View>
             <View style={{ 
               width:48, 
