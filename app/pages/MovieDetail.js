@@ -4,6 +4,7 @@ import Constants from 'expo-constants';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ChipGroup from '../components/ChipGroup';
 import TeaserTrailer from './../models/TeaserTrailer';
+import TrailerItem from '../components/TrailerItem';
 
 export default class MovieDetail extends React.Component {
   movieItem = null;
@@ -37,7 +38,7 @@ export default class MovieDetail extends React.Component {
       <View style={styles.container}>
         <ScrollView>
           
-          <TouchableWithoutFeedback onPress={() => navigation.pop()} >
+          <TouchableWithoutFeedback onPress={() => this.props.navigation.pop()} >
             
             <MaterialCommunityIcons 
           style={{ position: "absolute", top: Constants.statusBarHeight +10, left: 20, zIndex:1, paddingRight: 20, paddingBottom:20}} name="chevron-left" size={24} color={"#fff"} />
@@ -84,12 +85,11 @@ export default class MovieDetail extends React.Component {
             <Text style={styles.header}>Overview</Text>
             <Text>{this.movieItem.overview}</Text>
             <Text style={styles.header}>Teaser & Trailers</Text>
-            <View>
+            <View style={{ flexWrap: 'wrap', flexDirection:'row' }}>
               {
                 this.state.teeserTrailers.map(item => {
-                  return<Text key={item.key}>{item.name}</Text>;
-                })
-              }
+                  return (<TrailerItem key={item.key} poster={this.movieItem.backdrop_path} data = {item} />);
+                })}
             </View>
 
           </View>
