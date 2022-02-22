@@ -6,9 +6,21 @@ import 'react-native-gesture-handler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainRoot from './app/pages/MainRoot';
 import MovieDetail from './app/pages/MovieDetail';
+import { useFonts } from 'expo-font';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
+  // Fonts Style 
+  let [fontsLoaded] = useFonts({
+    Poppins: require('./assets/fonts/Poppins-Regular.ttf'),
+    PoppinsLight: require('./assets/fonts/Poppins-Light.ttf'),
+    PoppinsBold: require('./assets/fonts/Poppins-Bold.ttf'),
+    PoppinsSemiBold: require('./assets/fonts/Poppins-SemiBold.ttf'),
+  });
+  if(!fontsLoaded){
+    <View></View>
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{

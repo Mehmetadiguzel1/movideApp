@@ -71,7 +71,7 @@ export default class Home extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.header}>
-                    <Text style={styles.title}>Movie Catch</Text>
+                    <Text style={styles.title}>Keko Movie</Text>
                     <MaterialCommunityIcons name="magnify" size={26} />
                 </View>
                 <ScrollView horizontal={true} 
@@ -80,7 +80,7 @@ export default class Home extends Component {
                     <View style={{ flexDirection: "row", flex: 1, paddingLeft: 20}}>
                         {
                             this.state.popularMovies.map((item, index) =>{
-                                return( index < 4 ? (<MovieItem key={item.id}  item={item} /> 
+                                return( index < 6 ? (<MovieItem key={item.id}  item={item} /> 
                                     ) : <View key={item.id} />
                                     
                                 );
@@ -108,6 +108,6 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize: 24,
-        fontWeight:"bold",
+        fontFamily: 'Poppins',
     },
 });
