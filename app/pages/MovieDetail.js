@@ -104,18 +104,10 @@ export default class MovieDetail extends React.Component {
 
               <View style={{ flexWrap: "wrap", flexDirection: "column"}}>
                 <Text style={styles.title}>{this.movieItem.title}</Text>
-                <Text>{this.movieItem.release_date}</Text>
+                <Text style={styles.subtitle}>{this.movieItem.release_date}</Text>
               </View>
-              <View style={{ 
-                width:48, 
-                height:48, 
-                backgroundColor:"white", 
-                borderRadius:24,
-                justifyContent:"center",
-                alignItems:"center",
-                
-                }}>
-                  <Text>{this.movieItem.vote_average}</Text>
+              <View style={styles.borderVoteBadge}>
+                  <Text style={styles.ranting} >{this.movieItem.vote_average}</Text>
               </View>
             </View>
 
@@ -125,7 +117,7 @@ export default class MovieDetail extends React.Component {
 
 
             <Text style={styles.header}>Overview</Text>
-            <Text>{this.movieItem.overview}</Text>
+            <Text style={{}} >{this.movieItem.overview}</Text>
             <Text style={styles.header}>Teaser & Trailers</Text>
             <View style={{ flexWrap: 'wrap', flexDirection:'row' }}>
               {
@@ -149,18 +141,34 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         marginTop: Constants.statusBarHeight,
+        backgroundColor: 'white'
 
     },
     poster:{
       height: 230,
     },
     title:{
-      fontSize: 20,
-      fontWeight: "700",
-      },
+      fontWeight: 'bold'
+    },
+    ranting:{
+      color: 'orange',
+      fontWeight: 'bold',
+      justifyContent:"center",
+      alignItems:"center",
+    },
+    borderVoteBadge:{
+      width:56, 
+      height:56, 
+      backgroundColor:"#444", 
+      borderRadius:26,
+      borderWidth:1,
+      borderColor: 'orange',
+      justifyContent:"center",
+      alignItems:"center",
+    },
     header:{
-      fontSize: 26,
-      fontWeight:"bold",
+      fontWeight: 'bold',
       marginTop: 10,
-    }
+    },
+    
 })

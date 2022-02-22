@@ -9,7 +9,7 @@ function MovieItem(props) {
         <TouchableNativeFeedback onPress={() => navigation.navigate("MovieDetail", { item: props.item})}>
             <View style={styles.item} >
                 <Image style={styles.poster} source={{uri:"https://image.tmdb.org/t/p/original/" + props.item.poster_path}}/>
-                <Text style={{width: 180}} >{props.item.title}</Text>
+                <Text style={styles.MovieCardName} >{props.item.title}</Text>
             </View>
         </TouchableNativeFeedback>
     );
@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         flexWrap: 'wrap',
         marginRight: 10,
+    },
+    MovieCardName:{
+        width: 180, 
     },
     poster: {
         width: 180,

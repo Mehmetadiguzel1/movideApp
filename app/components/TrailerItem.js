@@ -32,7 +32,7 @@ export default function TrailerItem(props) {
                     marginBottom: 5,
                     }} 
                     source={{uri:'https://image.tmdb.org/t/p/original/' + props.poster}} />
-                <Text style={{flexWrap: 'wrap', width: posterWidth}}>{props.data.name}</Text>
+                <Text style={{flexWrap: 'wrap', width: posterWidth,}}>{props.data.name}</Text>
             </View>
         </TouchableWithoutFeedback>
     );
