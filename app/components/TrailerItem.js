@@ -1,11 +1,8 @@
-import { StyleSheet, Text, View, Image, Dimensions, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 
 export default function TrailerItem(props) {
     // See our emulator screen size
-    const deviceWidth = Dimensions.get('window').width;
-    const posterWidth = (deviceWidth - 50) / 2;
-    const leftPosition = (posterWidth - 24) / 4;
     const marginValue = props.itemIndex %2 == 0 ? 10 : 0;
 
 
@@ -13,30 +10,35 @@ export default function TrailerItem(props) {
         <TouchableWithoutFeedback  onPress={props.onPressFunction}>
             <View style={{ marginRight: marginValue, marginTop: 10, }} >
                 <Image
-                style={{ 
-                    position: 'absolute',
-                    top: 20,
-                    left: leftPosition, 
-                    zIndex: 1,
-                    width: 56,
-                    height: 56,
-                    
-                
-                }} 
+                style={styles.ImagePlayButton} 
                 source={require('./../../assets/play-button.png')} />
                 <Image resizeMode={'cover'} 
-                style={{
-                    width: posterWidth, 
-                    height: 100,
-                    borderRadius: 20,
-                    marginBottom: 5,
-                    }} 
-                    source={{uri:'https://image.tmdb.org/t/p/original/' + props.poster}} />
-                <Text style={{flexWrap: 'wrap', width: posterWidth,}}>{props.data.name}</Text>
+                style={styles.ImageMovie} 
+                    source={{ uri: props.poster }} />
+                <Text style={styles.TrailerName}>{props.data.name}</Text>
             </View>
         </TouchableWithoutFeedback>
     );
 }
-
+const styles = StyleSheet.create({
+    ImagePlayButton: {
+        position: 'absolute',
+        top: 5,
+        left: 5, 
+        zIndex: 1,
+        width: 36,
+        height: 36,
+    },
+    TrailerName:{
+        flexWrap: 'wrap', 
+        width: 180,
+    },
+    ImageMovie:{
+        width: 180, 
+        height: 100,
+        borderRadius: 20,
+        marginBottom: 5,
+    }
+})
 
 

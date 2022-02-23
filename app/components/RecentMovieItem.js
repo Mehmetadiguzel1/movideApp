@@ -1,34 +1,49 @@
-import { StyleSheet, Text, View, Image, TouchableNativeFeedback } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableNativeFeedback, Dimensions, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 function RecentMovieItem(props) {
-    
-
     const navigation = useNavigation();
+    const deviceWidth = Dimensions.get("window").width;
+    const _width = deviceWidth - 50 - 171;
     return (
-        <TouchableNativeFeedback onPress={() => navigation.navigate("MovieDetail", { item: props.item})}>
-            <View style={styles.item} >
-
-                <Image style={styles.poster} source={{uri:"https://image.tmdb.org/t/p/original/" + props.item.poster_path}}/>
-
-                <View style={styles.movieCardRowStyle}>
-                    <Text style={styles.MovieCardName} >{props.item.title}</Text>
-                    <Text style={{width: 100}}>
-                        {props.item.genres.map((genre, index) => genre + (index < props.item.genres.length - 1 ? ", " : ""))}
-                    </Text>
-
-                <View style={styles.rate}>
-                    <MaterialCommunityIcons name="star" size={17} color={"gold"} />
-                    <Text style={{fontFamily:'PoppinsSemiBold', alignItems:'center',}}>{props.item.vote_average}</Text>
-                    <Text style={styles.rateMax}> / 10</Text>
-                </View>
-                
-                </View>
+        <TouchableWithoutFeedback
+        onPress={() => navigation.navigate("MovieDetail", { item: props.item })}
+        >
+        <View style={styles.item}>
+            <Image
+            style={styles.poster}
+            source={{
+                uri: props.item.poster_path,
+            }}
+            />
+            <View style={{ marginLeft: 10, width: _width }}>
+            <Text style={styles.textBody}>
+                {props.item.title}
+            </Text>
+            <Text style={styles.typeMovieBody}>
+                {props.item.genres.map(
+                (genre, index) =>
+                    genre + (index < props.item.genres.length - 1 ? ", " : "")
+                )}
+            </Text>
+            <View style={styles.ratePointBody}>
+                <MaterialCommunityIcons name="star" color={"#FE6D8E"} size={20} />
+                <Text
+                style={styles.rate}>
+                {props.item.vote_average}
+                </Text>
+                <Text
+                style={styles.voteDegree}>
+                {" "}
+                / 10
+                </Text>
             </View>
-        </TouchableNativeFeedback>
+            </View>
+        </View>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -37,22 +52,26 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: 'wrap',
     },
+    ratePointBody:{
+        flexDirection: "row", flexWrap: "wrap", 
+    },
+    textBody: {
+            width: 171, 
+            fontWeight:'bold', 
+            fontSize: 13
+    },
     rate:{
-        flexDirection: 'row',
-        flexWrap:"wrap",
+        fontWeight:'bold',
+        alignSelf: "center",
     },
-    rateMax:{
+    typeMovieBody:{
+        fontWeight: 'bold', 
+        fontSize: 12
+    },
+    voteDegree:{
         fontSize: 10,
-        fontFamily: 'PoppinsLight',
-        alignSelf: 'flex-end',
-    },
-    movieCardRowStyle:{
-        marginLeft: 10,
-    },
-    MovieCardName:{
-        width: 180, 
-        fontFamily: 'Poppins',
-        fontSize: 13
+        fontWeight:'bold',
+        alignSelf: "flex-end",
     },
     poster: {
         width: 180,

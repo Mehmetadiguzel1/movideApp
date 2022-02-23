@@ -8,7 +8,7 @@ function MovieItem(props) {
     return (
         <TouchableNativeFeedback onPress={() => navigation.navigate("MovieDetail", { item: props.item})}>
             <View style={styles.item} >
-                <Image style={styles.poster} source={{uri:"https://image.tmdb.org/t/p/original/" + props.item.poster_path}}/>
+                <Image style={styles.poster} source={{uri:props.item.poster_path}}/>
                 <Text style={styles.MovieCardName} >{props.item.title}</Text>
             </View>
         </TouchableNativeFeedback>

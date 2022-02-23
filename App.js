@@ -6,36 +6,52 @@ import 'react-native-gesture-handler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainRoot from './app/pages/MainRoot';
 import MovieDetail from './app/pages/MovieDetail';
-import { useFonts } from 'expo-font';
+import * as Font from 'expo-font';
+
 
 const Stack = createNativeStackNavigator();
 export default function App() {
-  // Fonts Style 
-  let [fontsLoaded] = useFonts({
-    Poppins: require('./assets/fonts/Poppins-Regular.ttf'),
-    PoppinsLight: require('./assets/fonts/Poppins-Light.ttf'),
-    PoppinsBold: require('./assets/fonts/Poppins-Bold.ttf'),
-    PoppinsSemiBold: require('./assets/fonts/Poppins-SemiBold.ttf'),
-  });
-  if(!fontsLoaded){
-    <View></View>
-  }
+  const [fontsLoaded, setFontLoaded] = React.useState(false);
 
+  React.useEffect(() => {
+    async function loadResourcesAndDataAsync() {
+      try {
+        //TODO: Load fonts
+        await Font.loadAsync({
+          "poppins-r": require("./assets/fonts/Poppins-Regular.ttf"),
+          "poppins-l": require("./assets/fonts/Poppins-Light.ttf"),
+          "poppins-sb": require("./assets/fonts/Poppins-SemiBold.ttf"),
+          "poppins-b": require("./assets/fonts/Poppins-Bold.ttf"),
+        });
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setFontLoaded(true);
+      }
+    }
+
+    loadResourcesAndDataAsync();
+  }, []);
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerShown: false
-      }}
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
       >
         <Stack.Screen
-          name="Home"
+          name="MainRoot"
           component={MainRoot}
-          options={{ title: 'MainRoot' }}
+          options={{ title: "MainRoot" }}
         />
         <Stack.Screen
           name="MovieDetail"
           component={MovieDetail}
-          options={{ title: 'MovieDetail' }}
+          options={{ title: "MovieDetail" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

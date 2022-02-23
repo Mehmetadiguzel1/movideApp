@@ -5,6 +5,7 @@ import Movie from '../models/Movie';
 import MovieItem from '../components/MovieItem'
 import RecentMovieItem from '../components/RecentMovieItem'
 
+
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 export default class Home extends Component {
     _isMount = false;
@@ -47,8 +48,8 @@ export default class Home extends Component {
                     new Movie({ 
                         id: movie.id, 
                         title: movie.title, 
-                        poster_path: movie.poster_path,
-                        backdrop_path: movie.backdrop_path,
+                        poster_path: "https://image.tmdb.org/t/p/original/" + movie.poster_path,
+                        backdrop_path: "https://image.tmdb.org/t/p/original/" + movie.backdrop_path,
                         genre_ids: movie.genre_ids,
                         overview: movie.overview,
                         popularity: movie.popularity,
@@ -84,8 +85,8 @@ export default class Home extends Component {
                     new Movie({ 
                         id: movie.id, 
                         title: movie.title, 
-                        poster_path: movie.poster_path,
-                        backdrop_path: movie.backdrop_path,
+                        poster_path: "https://image.tmdb.org/t/p/original/" + movie.poster_path,
+                        backdrop_path: "https://image.tmdb.org/t/p/original/" + movie.backdrop_path,
                         genre_ids: movie.genre_ids,
                         overview: movie.overview,
                         popularity: movie.popularity,
@@ -122,28 +123,17 @@ export default class Home extends Component {
                 </View>
                 
                 <ScrollView>
-                    <View style={{
-                        flexDirection:'row', 
-                        justifyContent:'space-between',
-                        paddingHorizontal: 20,
-                        alignItems:'center',
-                        marginVertical: 15,
-                        marginBottom: 10,
-                        }}>
+                    <View style={styles.PopularMoviesBar}>
                             <Text>Popular Movies</Text>
-                            <View style={{
-                                flexDirection:'row', 
-                                flexWrap: 'wrap', 
-                                alignItems:'center',
-                                }}>
-                                <Text style={{ fontFamily: 'PoppinsBold'}}>View All</Text>
+                            <View style={styles.PopularMoviesViewAll}>
+                                <Text style={styles.PopularMoviesText}>View All</Text>
                                 <MaterialCommunityIcons name='chevron-right' size='20'/>
                             </View>
                     </View>
                     <ScrollView horizontal={true} 
                     showsHorizontalScrollIndicator = {false}
                     >
-                    <View style={{ flexDirection: "row", flex: 1, paddingLeft: 20}}>
+                    <View style={styles.PopularMoviesImageCards}>
                             {
                                 this.state.popularMovies.map((item, index) =>{
                                     return( index < 6 ? (<MovieItem key={item.id}  item={item} /> 
@@ -154,20 +144,10 @@ export default class Home extends Component {
                             }
                     </View>
                     </ScrollView>
-                    <View style={{
-                        flexDirection:'row', 
-                        justifyContent:'space-between',
-                        paddingHorizontal: 20,
-                        alignItems:'center',
-                        marginVertical: 20,
-                        }}>
+                    <View style={styles.RecentMoviesBar}>
                             <Text>Recent Movies</Text>
-                            <View style={{
-                                flexDirection:'row', 
-                                flexWrap: 'wrap', 
-                                alignItems:'center',
-                                }}>
-                                <Text style={{ fontFamily: 'PoppinsBold'}}>View All</Text>
+                            <View style={styles.RecentMoviesViewAll}>
+                                <Text style={styles.RecentMoviesViewAllText}>View All</Text>
                                 <MaterialCommunityIcons name='chevron-right' size='20'/>
                             </View>
                     </View>
@@ -202,7 +182,47 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     title:{
-        fontSize: 26,
+        fontSize: 24,
         fontWeight:'bold',
     },
+    PopularMoviesBar:{
+        flexDirection:'row', 
+        justifyContent:'space-between',
+        paddingHorizontal: 20,
+        alignItems:'center',
+        marginVertical: 15,
+        marginBottom: 10,
+    },
+    PopularMoviesViewAll:{
+        flexDirection:'row', 
+        flexWrap: 'wrap', 
+        alignItems:'center',
+    },
+    PopularMoviesText:{
+        fontSize: 22, 
+        fontWeight: 'bold', 
+        marginTop: 10,
+    },
+    PopularMoviesImageCards:{
+        flexDirection: "row", 
+        flex: 1, 
+        paddingLeft: 20
+    },
+    RecentMoviesBar:{
+        flexDirection:'row', 
+        justifyContent:'space-between',
+        paddingHorizontal: 20,
+        alignItems:'center',
+        marginVertical: 20,
+    },
+    RecentMoviesViewAll:{
+        flexDirection:'row', 
+        flexWrap: 'wrap', 
+        alignItems:'center',
+    },
+    RecentMoviesViewAllText:{
+        fontSize: 17, 
+        fontWeight:'bold'
+    },
+
 });
